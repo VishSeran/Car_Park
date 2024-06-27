@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5555:5555"
+    environment:
+      - PORT=5555
+      - mongodb+srv://vishwasovis:zyAa8V5JbF7khQNj@carpark.3qhv4r4.mongodb.net/?retryWrites=true&w=majority&appName=CarPark
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:5555
+    depends_on:
+      - backend
+
