@@ -15,7 +15,7 @@ pipeline {
         stage('Build Backend Image') {
             steps {
                 script {
-                    docker.build("your-dockerhub-username/backend-image", "./backend")
+                    docker.build("seranvishwa/backend-image", "./backend")
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
         stage('Build Frontend Image') {
             steps {
                 script {
-                    docker.build("your-dockerhub-username/frontend-image", "./frontend")
+                    docker.build("seranvishwa/frontend-image", "./frontend")
                 }
             }
         }
@@ -32,8 +32,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS) {
-                        docker.image("your-dockerhub-username/backend-image").push('latest')
-                        docker.image("your-dockerhub-username/frontend-image").push('latest')
+                        docker.image("seranvishwa/backend-image").push('latest')
+                        docker.image("seranvishwa/frontend-image").push('latest')
                     }
                 }
             }
